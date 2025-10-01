@@ -1,16 +1,488 @@
----
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV | Juan Israel Garcia Villegas - Ingeniero en Formación</title>
+    <!-- Carga de íconos Lucide (necesario para la estética de íconos) -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <style>
+        /* ================================================= */
+        /* FUENTES y COLORES BASE (ASTRO THEME) */
+        /* ================================================= */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+        
+        :root {
+            /* Colores Base */
+            --bg-dark: #0d1117; /* Fondo principal (GitHub Dark) */
+            --bg-card: #161b22; /* Fondo de tarjetas */
+            --color-text: #f3f4f6; /* Gris muy claro (text-gray-100) */
+            --color-gray-medium: #9ca3af; /* Gris medio (text-gray-400) */
+            --color-gray-border: #374151; /* Gris oscuro para bordes (border-gray-700) */
+            
+            /* Colores de Acento (Astro/Cosmic Blue) */
+            --color-indigo-light: #a5b4fc; /* Título código (indigo-300) */
+            --color-indigo-medium: #818cf8; /* Íconos/Acentos (indigo-400) */
+            --color-indigo-strong: #6366f1; /* Círculos/Bordes (indigo-500) */
+            --color-cian: #38bdf8; /* Borde de secciones (sky-400) */
+            --font-main: 'Inter', sans-serif;
+            --font-code: 'Space Mono', monospace;
+        }
 
----
+        /* BODY y CONTENEDOR PRINCIPAL */
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-dark);
+            color: var(--color-text);
+            line-height: 1.5;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1024px; /* max-w-5xl */
+            margin: 0 auto;
+            padding: 1rem; /* p-4 */
+            display: flex;
+            flex-direction: column;
+            gap: 3rem; /* space-y-12 */
+        }
+        @media (min-width: 768px) {
+            .container {
+                padding: 2.5rem; /* md:p-10 */
+            }
+        }
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+        /* ================================================= */
+        /* HEADER y CONTACTO */
+        /* ================================================= */
+        .header-section {
+            text-align: center;
+            padding-top: 2rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid rgba(156, 163, 175, 0.5);
+        }
+        .profile-picture {
+            margin-bottom: 1.5rem;
+        }
+        .profile-picture img {
+            width: 8rem; 
+            height: 8rem;
+            border-radius: 50%;
+            margin: 0 auto;
+            object-fit: cover;
+            border: 4px solid var(--color-indigo-strong); 
+            box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.3), 0 4px 6px -2px rgba(99, 102, 241, 0.3);
+        }
+        .main-title {
+            font-size: 3rem;
+            font-weight: 800;
+        }
+        @media (min-width: 768px) {
+            .main-title {
+                font-size: 3.75rem;
+            }
+        }
+        .subtitle-code {
+            font-size: 1.25rem;
+            margin-top: 0.75rem;
+            color: var(--color-indigo-light);
+            font-family: var(--font-code);
+            /* Sombra de neón cósmica */
+            text-shadow: 0 0 5px rgba(129, 140, 248, 0.7); 
+        }
+        @media (min-width: 768px) {
+            .subtitle-code {
+                font-size: 1.5rem;
+            }
+        }
+        .contact-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem 1.5rem;
+            margin-top: 2rem;
+            font-size: 0.875rem;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--color-gray-medium);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .contact-item:hover {
+            color: var(--color-indigo-medium);
+        }
+        .contact-item svg {
+            width: 1rem;
+            height: 1rem;
+            color: var(--color-indigo-medium);
+            /* Sombra para el efecto de ícono neón */
+            filter: drop-shadow(0 0 1px var(--color-indigo-strong)); 
+        }
+        @media (min-width: 768px) {
+            .contact-list {
+                font-size: 1rem;
+            }
+        }
+
+        /* ================================================= */
+        /* SECCIONES Y TÍTULOS */
+        /* ================================================= */
+        .section-title {
+            font-size: 1.875rem; 
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--color-indigo-medium);
+            /* Borde cian para el estilo de encabezado de terminal */
+            border-left: 4px solid var(--color-cian); 
+            padding-left: 1rem;
+            font-family: var(--font-code);
+        }
+
+        /* Tags de Especialidad */
+        .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+        .tag {
+            background-color: rgba(67, 56, 202, 0.4); /* indigo-900/40 approx */
+            color: var(--color-indigo-light); 
+            font-size: 0.875rem; 
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-family: var(--font-code);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(67, 56, 202, 0.5); /* indigo-700/50 approx */
+            transition: background-color 0.3s;
+        }
+        .tag:hover {
+            background-color: rgba(67, 56, 202, 0.6); /* hover:bg-indigo-800/60 approx */
+        }
+
+        /* ================================================= */
+        /* EXPERIENCIA Y PROYECTOS (CARDS) */
+        /* ================================================= */
+        .experience-card {
+            background-color: var(--bg-card); 
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--color-gray-border); 
+            transition: border-color 0.3s;
+        }
+        .experience-card:hover {
+            border-color: var(--color-indigo-strong); 
+        }
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: white;
+            display: flex;
+            align-items: center;
+        }
+        .card-title svg {
+            width: 1.5rem; 
+            height: 1.5rem; 
+            margin-right: 0.75rem;
+            color: var(--color-indigo-medium);
+        }
+        .card-title span.year {
+            font-size: 0.875rem; 
+            margin-left: auto;
+            color: var(--color-gray-medium); 
+            font-family: var(--font-code);
+        }
+        .project-list {
+            list-style: disc;
+            margin-left: 1.5rem; 
+            padding-left: 0.5rem;
+            line-height: 1.75;
+            color: #d1d5db; /* text-gray-300 */
+        }
+        .project-list strong {
+            color: var(--color-indigo-medium); 
+        }
+
+        /* GRID para Formación/Certificaciones */
+        .card-grid {
+            display: grid;
+            gap: 2.5rem;
+        }
+        @media (min-width: 768px) {
+            .card-grid {
+                grid-template-columns: repeat(2, 1fr); 
+            }
+        }
+
+        /* ================================================= */
+        /* TIMELINE (Formación) */
+        /* ================================================= */
+        .timeline-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .timeline-item {
+            position: relative;
+            padding-left: 1.5rem; 
+            border-left: 2px solid var(--color-gray-border); 
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -8px; 
+            top: 0;
+            width: 1rem; 
+            height: 1rem; 
+            background-color: var(--color-indigo-strong); 
+            border-radius: 50%;
+        }
+        .timeline-item p:nth-child(1) {
+            font-size: 1.125rem; 
+            font-weight: 600;
+            color: white;
+        }
+        .timeline-item p:nth-child(2) {
+            color: var(--color-indigo-medium); 
+            font-family: var(--font-code);
+        }
+        .timeline-item p:nth-child(3) {
+            font-size: 0.875rem; 
+            color: var(--color-gray-medium); 
+        }
+
+        /* ================================================= */
+        /* CERTIFICACIONES */
+        /* ================================================= */
+        .cert-card {
+            background-color: var(--bg-card); 
+            padding: 1rem; 
+            border-radius: 0.5rem; 
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1); 
+            border: 1px solid var(--color-gray-border);
+        }
+        .cert-card p:nth-child(1) {
+            font-weight: 500;
+            color: white;
+        }
+        .cert-card p:nth-child(2) {
+            font-size: 0.875rem;
+            color: var(--color-indigo-medium);
+        }
+
+        /* ================================================= */
+        /* FOOTER */
+        /* ================================================= */
+        .footer-section {
+            text-align: center;
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+            color: #6b7280; 
+            border-top: 1px solid #1f2937; 
+        }
+        .console-prompt {
+            font-family: var(--font-code);
+        }
+        .console-prompt .user {
+            color: var(--color-indigo-medium); 
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app" class="container">
+
+        <!-- HEADER / HERO SECTION -->
+        <header class="header-section">
+            
+            <!-- FOTO DEL PERFIL -->
+            <div class="profile-picture">
+                <img 
+                    src="./images/profile.jpg" 
+                    alt="Foto de Perfil de Juan Israel Garcia Villegas" 
+                    onerror="this.onerror=null; this.src='https://placehold.co/120x120/6366f1/ffffff?text=Tu+Foto';"
+                >
+                <!-- IMPORTANTE: Reemplaza './images/profile.jpg' con la ruta de tu imagen 
+                     DENTRO DE TU PROYECTO ASTRO. Por ejemplo, si la guardas en 'public/profile.jpg', la ruta aquí sería '/profile.jpg'. -->
+            </div>
+
+            <h1 class="main-title">
+                Juan Israel Garcia Villegas
+            </h1>
+            <p class="subtitle-code">
+                Ingeniero en Formación | Enfoque Interdisciplinario y Astronómico
+            </p>
+            
+            <!-- DATOS PERSONALES / CONTACTO -->
+            <div class="contact-list">
+                <span class="contact-item" style="color: #d1d5db;">
+                    <i data-lucide="map-pin"></i>
+                    <span>Guadalajara, Jalisco, México</span>
+                </span>
+                <a href="tel:+523323953998" class="contact-item">
+                    <i data-lucide="phone"></i>
+                    <span>+52 3323953998</span>
+                </a>
+                <a href="mailto:isrraagarcia@hotmail.com" class="contact-item">
+                    <i data-lucide="mail"></i>
+                    <span>isrraagarcia@hotmail.com</span>
+                </a>
+                <a href="https://github.com/Vivaceash" target="_blank" class="contact-item">
+                    <i data-lucide="github"></i>
+                    <span>GitHub: Vivaceash</span>
+                </a>
+                <span class="contact-item" style="color: #d1d5db;">
+                    <i data-lucide="megaphone"></i>
+                    <span>Inglés: C1 (Avanzado)</span>
+                </span>
+            </div>
+        </header>
+
+        <!-- SECCIÓN 1: ÁREAS DE ESPECIALIDAD -->
+        <section class="section">
+            <h2 class="section-title">
+                Áreas de Especialidad
+            </h2>
+            <div class="tag-list">
+                <span class="tag">Ciencias de la Computación</span>
+                <span class="tag">Mecatrónica</span>
+                <span class="tag">Electrónica</span>
+                <span class="tag">Sistemas Embebidos</span>
+                <span class="tag">Integración de Sensores</span>
+                <span class="tag">Desarrollo Web (ESP32, Raspberry Pi)</span>
+                <span class="tag">Procesamiento de Imágenes</span>
+                <span class="tag">Investigación en TI Aplicada</span>
+                <span class="tag">Resolución de Problemas</span>
+                <span class="tag">Estudios Interdisciplinarios</span>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: EXPERIENCIA ACADÉMICA Y DE INVESTIGACIÓN -->
+        <section class="section">
+            <h2 class="section-title">
+                Experiencia Académica y de Investigación
+            </h2>
+            <div style="display: flex; flex-direction: column; gap: 2rem;">
+                
+                <!-- PROYECTO 1: Trampa electrónica para trips -->
+                <div class="experience-card">
+                    <h3 class="card-title">
+                        <i data-lucide="flask-conical"></i>
+                        Proyecto: Trampa electrónica para trips 
+                        <span class="year">(2023 – Presente)</span>
+                    </h3>
+                    <ul class="project-list">
+                        <li>Investigación detallada sobre la biología de la plaga y sus condiciones ambientales.</li>
+                        <li>Determinación e implementación de rangos óptimos de sensores (temperatura, humedad, presión, luz).</li>
+                        <li>Integración en **ESP32** con desarrollo de interfaz web local para control.</li>
+                        <li>Desarrollo de aplicación gráfica dedicada en **Raspberry Pi** para monitoreo avanzado.</li>
+                        <li>Implementación de detección de contornos con cámara para el conteo automatizado de insectos.</li>
+                        <li><strong style="color: var(--color-indigo-medium);">Plan Futuro:</strong> Integración de modelos de **Inteligencia Artificial** para mejorar la precisión y clasificación.</li>
+                    </ul>
+                </div>
+
+                <!-- PROYECTO 2: Innovatec Competition -->
+                <div class="experience-card">
+                    <h3 class="card-title">
+                        <i data-lucide="award"></i>
+                        Innovatec Competition 
+                        <span class="year">(2024 y 2025)</span>
+                    </h3>
+                    <p style="color: #d1d5db;">
+                        Participación activa con proyectos de investigación enfocados en Tecnologías de la Información (TI). 
+                        <br>Destacado como **Ganador en la etapa local (2024)**, demostrando capacidad de innovación y aplicación de conocimientos técnicos.
+                    </p>
+                </div>
+
+                <!-- PROYECTO 3: Trabajo Técnico Independiente -->
+                <div class="experience-card">
+                    <h3 class="card-title">
+                        <i data-lucide="zap"></i>
+                        Trabajo Técnico Independiente 
+                        <span class="year">(2019 – Presente)</span>
+                    </h3>
+                    <p style="color: #d1d5db;">
+                        Desarrollo de habilidades en **electrónica aplicada**, instalaciones eléctricas y proyectos electrónicos a pequeña escala, fortaleciendo la capacidad de resolución de problemas en entornos reales.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECCIÓN 3: FORMACIÓN ACADÉMICA Y CERTIFICACIONES -->
+        <div class="card-grid">
+            
+            <!-- FORMACIÓN ACADÉMICA -->
+            <section class="section" style="margin-top: 0;">
+                <h2 class="section-title">
+                    Formación Académica
+                </h2>
+                <div class="timeline-wrapper">
+                    <!-- Universidad -->
+                    <div class="timeline-item">
+                        <p>Ingeniería en Ciencias de la Computación</p>
+                        <p style="color: var(--color-indigo-medium); font-family: var(--font-code);">Instituto Tecnológico de Tlajomulco</p>
+                        <p>Licenciatura en curso (2022 – Presente)</p>
+                    </div>
+                    <!-- Preparatoria -->
+                    <div class="timeline-item">
+                        <p>Bachillerato (Programa de Mecatrónica)</p>
+                        <p style="color: var(--color-indigo-medium); font-family: var(--font-code);">UDG Bachillerato</p>
+                        <p>Año de egreso: 2021</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CERTIFICACIONES -->
+            <section class="section" style="margin-top: 0;">
+                <h2 class="section-title">
+                    Certificaciones
+                </h2>
+                <div class="timeline-wrapper" style="gap: 1rem;">
+                    <div class="cert-card">
+                        <p>PCAP: Certified Associate in Python Programming</p>
+                        <p style="color: var(--color-indigo-medium);">Python Institute (2023)</p>
+                    </div>
+                    <div class="cert-card">
+                        <p>Cisco CCNA: Switching, Routing & Wireless Essentials</p>
+                        <p style="color: var(--color-indigo-medium);">Cisco Networking Academy (2023)</p>
+                    </div>
+                    <div class="cert-card">
+                        <p>Cisco CCNA: Introduction to Networks</p>
+                        <p style="color: var(--color-indigo-medium);">Cisco Networking Academy (2022)</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- SECCIÓN 4: ACTIVIDADES ADICIONALES -->
+        <section class="section">
+            <h2 class="section-title">
+                Actividades Académicas Adicionales
+            </h2>
+            <ul class="project-list">
+                <li>Participación en competencias **Innovatec** con proyectos de investigación en TI (2024, 2025).</li>
+                <li>Reconocimiento como **Ganador de etapa local (2024)** en Innovatec.</li>
+                <li>Estudios independientes y autodidactas en áreas de **psicología** y <strong style="color: var(--color-indigo-medium);">astronomía</strong>, lo que amplía la perspectiva para proyectos interdisciplinarios.</li>
+            </ul>
+        </section>
+
+        <!-- FOOTER / CONSOLE PROMPT -->
+        <footer class="footer-section">
+            <p class="console-prompt">
+                <span class="user">user@host:~$</span> cat README.md
+            </p>
+            <p style="margin-top: 0.5rem; font-size: 0.75rem;">Diseño con Puro CSS | Desarrollado por Juan Israel Garcia Villegas</p>
+        </footer>
+
+    </div>
+
+    <!-- Inicialización de íconos Lucide -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
 </html>
